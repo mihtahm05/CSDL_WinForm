@@ -1,0 +1,11 @@
+D:\LTDesktop\CSDLWinform\bin\Debug\CSDLWinform.exe.config
+D:\LTDesktop\CSDLWinform\bin\Debug\CSDLWinform.exe
+D:\LTDesktop\CSDLWinform\bin\Debug\CSDLWinform.pdb
+D:\LTDesktop\CSDLWinform\obj\Debug\CSDLWinform.csproj.AssemblyReference.cache
+D:\LTDesktop\CSDLWinform\obj\Debug\CSDLWinform.Form1.resources
+D:\LTDesktop\CSDLWinform\obj\Debug\CSDLWinform.Form2.resources
+D:\LTDesktop\CSDLWinform\obj\Debug\CSDLWinform.Properties.Resources.resources
+D:\LTDesktop\CSDLWinform\obj\Debug\CSDLWinform.csproj.GenerateResource.cache
+D:\LTDesktop\CSDLWinform\obj\Debug\CSDLWinform.csproj.CoreCompileInputs.cache
+D:\LTDesktop\CSDLWinform\obj\Debug\CSDLWinform.exe
+D:\LTDesktop\CSDLWinform\obj\Debug\CSDLWinform.pdb
