@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -110,6 +110,8 @@ namespace CSDLWinform
             cbochucvu.DataSource = ds.Tables["CHUCVU"];
             cbochucvu.DisplayMember = "TenChucVu";
             cbochucvu.ValueMember = "MaChucVu";
+
+            DataProvider.dongketnoi(); // ADD THIS LINE
         }
 
         public void loadNhanVien()
@@ -128,6 +130,25 @@ namespace CSDLWinform
 
         private void btnTim_Click(object sender, EventArgs e)
         {
+            string tencantim = txt_Tencantim.Text;
+            if (string.IsNullOrEmpty(tencantim))
+            {
+                MessageBox.Show("Vui lòng nhập tên cần tìm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string sql = "Select * from NhanVien where Hoten Like @tencantim";
+
+            da = new SqlDataAdapter(sql, DataProvider.cn);
+            da.SelectCommand.Parameters.AddWithValue("@tencantim", "%" + tencantim + "%");
+
+            if (ds.Tables.Contains("NhanVien"))
+                ds.Tables["NhanVien"].Clear();
+
+            da.Fill(ds, "NhanVien");
+            dataGridView2.DataSource = ds.Tables["NhanVien"];
+
+            DataProvider.dongketnoi();
 
         }
 
@@ -201,5 +222,36 @@ namespace CSDLWinform
                 DataProvider.dongketnoi();
             }
         }
+
+        private void btnLamMoi_Click(object sender, EventArgs e)
+        {
+            txt_Tencantim.Clear();
+            loadNhanVien();
+        }
+
+        private void htnThongKe_Click(object sender, EventArgs e)
+        {
+            DataProvider.moketNoi();
+            string sql = "SELECT SUM(HeSoLuong) FROM NhanVien";
+            SqlCommand cmd = new SqlCommand(sql, DataProvider.cn);
+
+            object result = cmd.ExecuteScalar();
+            DataProvider.dongketnoi();
+
+            if (result != DBNull.Value)
+            {
+                float tongLuong = Convert.ToSingle(result);
+                label_Sum.Text = "Tổng lương nhân viên: " + tongLuong.ToString("N2");
+            }
+            else
+            {
+                label_Sum.Text = "Tổng lương nhân viên: 0";
+            }
+        }
+
+        //private void label10_Click(object sender, EventArgs e)
+        //{
+
+        //}
     }
 }
